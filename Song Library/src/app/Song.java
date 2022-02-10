@@ -1,11 +1,17 @@
 package app;
-import java.util.ArrayList;
-import java.util.Collections;
+
+
+/*
+ * This Class stores the information of the song and allows for easy 
+ * display of the songs information.
+ * 
+ * I implemented the compareTo method so we can call the Collections.sort method 
+ * to sort the array for us. 
+ */
+
 
 public class Song implements Comparable<Song>{
-	
-	public static ArrayList<Song> songList = new ArrayList<>();
-	
+		
 	private String name;
 	private String artist;
 	private String album;
@@ -16,6 +22,22 @@ public class Song implements Comparable<Song>{
 		this.artist = artist;
 		this.album = album; 
 		this.year = year;
+	}
+	
+	public String getArtist() {
+		return artist;
+	}
+
+	public String getAlbum() {
+		return album;
+	}
+
+	public String getYear() {
+		return year;
+	}
+
+	public String getName() {
+		return this.name;
 	}
 	
 	public String display() {

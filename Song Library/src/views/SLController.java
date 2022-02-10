@@ -1,12 +1,9 @@
 package views;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
-
 import app.Song;
+import app.SongLib;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,8 +11,20 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+
+/*
+ * The controller is going to do most of the work in this program. 
+ * The start method is going to instancialize all the FX elements and add event handlers to them
+ * The rest of the code is going to implement those event handlers. 
+ * 
+ * 
+ */
+
 
 public class SLController {
+	ArrayList<Song> songList;
 	@FXML ListView<String> listView;
 	ObservableList<String> obvList;
 	@FXML Button delete;
@@ -39,31 +48,58 @@ public class SLController {
 		return displayList;
 	}
 	
-	//loads all songs in file to ArrayList and returns it;
-	public ArrayList<Song> getList(){
-				BufferedReader reader = null;
-				ArrayList<Song> list = new ArrayList<>();
-				try {
-					reader = new BufferedReader(new FileReader("/app/songs.txt"));
-					String s;
-					while((s = reader.readLine()) != null) {
-						String[] sarr = s.split(",");
-						list.add(new Song(sarr[0], sarr[1], sarr[2], sarr[3]));
-					}
-					reader.close();
-					return list;
-				}catch(FileNotFoundException e) {
-					System.out.println("Fix it dumbass");
-				}catch(IOException e) {
-					System.out.println(e.getStackTrace());
-				}
-				return null;
-			}
-		
-	public void start() {
+/*
+ * We want to be able to select objects in the list and 
+ * 
+ */
+	
+	
+	
+	public void start(Stage mainStage) {
 		//Initializes observable list to list of songs
-		obvList = FXCollections.observableArrayList();
+		songList = SongLib.getSongList();
+		obvList = FXCollections.observableArrayList(getDisplayList(songList));
+		
+		//Setting ListView Properties and event handling
 		listView.setItems(obvList);
+		listView.getSelectionModel().select(0);
+		listView.getSelectionModel().selectedItemProperty().addListener((obvList)->showInfo());
+		
+		//
+		
+		
+		//Setting Info and Delete Section events
+		delete.setDisable(true);
+		name.setText("");
+		artist.setText("");
+		album.setText("");
+		
+		
+		//Setting adding events
+		
+		
+		
 	}
+	
+	//Method Displays the info of the selected Obv item
+	public void showInfo() {
+		name.setText(songList.get(listView.getSelectionModel().getSelectedIndex()).getName());
+		artist.setText(songList.get(listView.getSelectionModel().getSelectedIndex()).getArtist());
+		album.setText(songList.get(listView.getSelectionModel().getSelectedIndex()).getAlbum());
+		year.setText(songList.get(listView.getSelectionModel().getSelectedIndex()).getYear());
+		delete.setDisable(false);
+	}
+	
+	//Deletes song that is selected by the listView
+	public void delete(ActionEvent e) {
+		
+	}
+	
+	//adds the song that was typed by the user
+	public void add(ActionEvent e) {
+		
+	}
+	
+	
 	
 }
