@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import app.Song;
 import app.SongLib;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -63,31 +65,43 @@ public class SLController {
 		//Setting ListView Properties and event handling
 		listView.setItems(obvList);
 		listView.getSelectionModel().select(0);
-		listView.getSelectionModel().selectedItemProperty().addListener((obvList)->showInfo());
-		
-		//
+		Song firstSong = songList.get(listView.getSelectionModel().getSelectedIndex());
+		listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newVal) {
+				showInfo();
+			}
+		});
 		
 		
 		//Setting Info and Delete Section events
+		name.setText(firstSong.getName());
+		artist.setText(firstSong.getArtist());
+		album.setText(firstSong.getAlbum());
+		year.setText(firstSong.getYear());
 		delete.setDisable(true);
-		name.setText("");
-		artist.setText("");
-		album.setText("");
+		}
+		
+		//
+		
 		
 		
 		//Setting adding events
 		
 		
-		
-	}
+
 	
 	//Method Displays the info of the selected Obv item
-	public void showInfo() {
-		name.setText(songList.get(listView.getSelectionModel().getSelectedIndex()).getName());
-		artist.setText(songList.get(listView.getSelectionModel().getSelectedIndex()).getArtist());
-		album.setText(songList.get(listView.getSelectionModel().getSelectedIndex()).getAlbum());
-		year.setText(songList.get(listView.getSelectionModel().getSelectedIndex()).getYear());
+	private void showInfo() {
+		int index = listView.getSelectionModel().getSelectedIndex();
+		Song s = songList.get(index);
+		name.setText(s.getName());
+		artist.setText(s.getArtist());
+		album.setText(s.getAlbum());
+		year.setText(s.getYear());
 		delete.setDisable(false);
+
 	}
 	
 	//Deletes song that is selected by the listView

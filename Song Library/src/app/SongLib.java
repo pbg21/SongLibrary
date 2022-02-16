@@ -11,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import views.SLController;
-import javafx.stage.Stage;
 
 
 /*
@@ -32,7 +31,7 @@ public class SongLib extends Application{
 		// TODO Auto-generated method stub
 		// create FXML loader
 				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(getClass().getResource("views/Main.fxml"));
+				loader.setLocation(getClass().getResource("/views/Main.fxml"));
 				// load fmxl, root layout manager in fxml file is AnchorPane
 				AnchorPane root = (AnchorPane)loader.load();
 				//Loads Controller and starts it off 
@@ -58,7 +57,7 @@ public class SongLib extends Application{
 				BufferedReader reader = null;
 				ArrayList<Song> list = new ArrayList<>();
 				try {
-					reader = new BufferedReader(new FileReader("/app/songs.txt"));
+					reader = new BufferedReader(new FileReader("src/app/songs.txt"));
 					String s;
 					while((s = reader.readLine()) != null) {
 						String[] sarr = s.split(",");
@@ -67,8 +66,10 @@ public class SongLib extends Application{
 					reader.close();
 					return list;
 				}catch(FileNotFoundException e) {
-					System.out.println("Fix it dumbass");
+					System.out.println(e.getStackTrace());
 				}catch(IOException e) {
+					System.out.println(e.getStackTrace());
+				}catch(Exception e) {
 					System.out.println(e.getStackTrace());
 				}
 				return null;

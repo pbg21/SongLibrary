@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="677.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SLController.java">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="677.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.SLController">
 	<children>
 		<Pane layoutX="356.0" layoutY="241.0" prefHeight="229.0" prefWidth="296.0">
 			<children>
@@ -35,10 +35,10 @@
 						<Label text="Artist" GridPane.rowIndex="1" />
 						<Label text="Album" GridPane.rowIndex="2" />
 						<Label text="Year" GridPane.rowIndex="3" />
-						<TextField id="name_f" GridPane.columnIndex="1" />
-						<TextField id="artist_f" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-						<TextField id="album_f" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-						<TextField id="year_f" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+						<TextField id="name_f" fx:id="name_f" GridPane.columnIndex="1" />
+						<TextField id="artist_f" fx:id="artist_f" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+						<TextField id="album_f" fx:id="album_f" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+						<TextField id="year_f" fx:id="year_f" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 					</children>
 				</GridPane>
 				<Label alignment="CENTER" layoutX="26.0" layoutY="-6.0" prefHeight="17.0" prefWidth="200.0" style="-fx-border-color: black;" text="Add/Edit Song">
@@ -46,15 +46,15 @@
 						<Font size="26.0" />
 					</font>
 				</Label>
-				<Button id="add" layoutX="107.0" layoutY="189.0" mnemonicParsing="false" onAction="#add" text="Add" />
+				<Button id="add" fx:id="add" layoutX="107.0" layoutY="189.0" mnemonicParsing="false" text="Add" />
             <RadioButton layoutX="58.0" layoutY="42.0" mnemonicParsing="false" text="Edit" />
             <RadioButton layoutX="145.0" layoutY="42.0" mnemonicParsing="false" text="Add" />
 			</children>
 		</Pane>
 		<Pane layoutX="339.0" prefHeight="222.0" prefWidth="329.0">
 			<children>
-				<Button id="delete" layoutX="114.0" layoutY="183.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
-				<Label alignment="CENTER" layoutX="39.0" layoutY="14.0" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: light gray; -fx-border-color: black;" text="Info">
+				<Button id="delete" fx:id="delete" layoutX="114.0" layoutY="183.0" mnemonicParsing="false" text="Delete" />
+				<Label alignment="CENTER" layoutX="39.0" layoutY="14.0" prefHeight="38.0" prefWidth="200.0" style="-fx-border-color: black;" text="Info">
 					<font>
 						<Font size="26.0" />
 					</font>
@@ -76,10 +76,10 @@
 						<Label text="Artist" GridPane.rowIndex="1" />
 						<Label text="Album" GridPane.rowIndex="2" />
 						<Label text="Year" GridPane.rowIndex="3" />
-						<Text id="name" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" />
-						<Text id="artist" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-						<Text id="album" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-						<Text id="year" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+						<Text id="name" fx:id="name" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" />
+						<Text id="artist" fx:id="artist" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+						<Text id="album" fx:id="album" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+						<Text id="year" fx:id="year" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" GridPane.rowIndex="3" />
 						<Separator orientation="VERTICAL" prefHeight="120.0" prefWidth="0.0" GridPane.columnIndex="1" GridPane.rowSpan="2147483647" />
 					</children>
 				</GridPane>
@@ -87,7 +87,7 @@
 		</Pane>
 		<Pane prefHeight="482.0" prefWidth="329.0">
 			<children>
-				<ListView id="listView" layoutX="65.0" layoutY="60.0" prefHeight="375.0" prefWidth="200.0" />
+				<ListView id="listView" fx:id="listView" layoutX="65.0" layoutY="60.0" prefHeight="375.0" prefWidth="200.0" />
 				<Label alignment="CENTER" layoutX="65.0" layoutY="14.0" prefHeight="38.0" prefWidth="200.0" style="-fx-border-color: black;" text="Songs">
 					<font>
 						<Font size="26.0" />
